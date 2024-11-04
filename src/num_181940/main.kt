@@ -5,6 +5,8 @@ fun main() {
     val my_string = "hello"
     var answer: String = ""
 
+    answer = my_string.repeat(k)
+
     for( i in 0..3) {
         answer += my_string
     }
