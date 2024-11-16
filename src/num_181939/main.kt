@@ -1,8 +1,10 @@
 package num_181939
 
 fun main() {
-    var a = 1000
-    var b = 1234
+    var a = 125
+    var b = 136
+    //124135
+    //136125
     var nextDigits = 0
     var maxDigits = 0
     var showTime: Boolean = true
