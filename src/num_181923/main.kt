@@ -6,48 +6,59 @@ fun main() {
     //[[0, 4, 2],[0, 3, 2],[0, 2, 2]]
     val queries : Array<Array<Any>> = arrayOf(
         arrayOf(0,4,2),
-        arrayOf(0,3,2),
-        arrayOf(0,2,2)
+        arrayOf(0,3,1),
+        arrayOf(0,2,3)
     )
     var answer: IntArray = intArrayOf()
     var newarry = mutableListOf<Int>()
 
     fun mainGo(){
-        var a = 0
-        var b = 0
-        var c = 0
-
+        var s = 0
+        var e = 0
+        var k = 0
+        // queries의 원소는 각각 하나의 query를 나타내며, [s, e, k] 꼴입니다.
         for( i in queries){
             var sliced : List<Int>
             var aa = -1
+            var temp = -1
+
             for( j in i.indices ){
                 if( j == 0 ){
-                    // arr의 범위를 나타낼 값
-                    a = i[j] as Int
+                    // s 에 해당
+                    s = i[j] as Int
                 }else if ( j == 1 ){
-                    // arr의 범위를 나타낼 값
-                    b = i[j] as Int
+                    // e 에 해당
+                    e = i[j] as Int
                 }else {
-                    // c 는 arr[a~b] 범위 내에서 값을 찾을 때 필요한 기준값
-                    c = i[j] as Int
+                    // k 에 해당
+                    k = i[j] as Int
                 }
+
             }
 
-            sliced = arr.slice(a..b)
-
+            println( "k : " + k)
+            // arr 배열에서 s 에서 e 까지 자른다.
+            sliced = arr.slice(s..e)
+            println(sliced)
             for ( i in sliced.indices){
-                if ( c < sliced[i] )
+                // sliced 의 요소들 중 k 보다 큰 숫자를 찾는다.
+                if ( k < sliced[i] )
                 {
-                    aa = sliced[i]
-                    if ( aa > sliced[i])
-                    {
-                        aa = sliced[i]
+                    if (temp == -1 ){ temp =  sliced[i] }
+
+                    // k 보다 큰 숫자 중 이전에 가장 작은 값과 비교하여 더 작은 값을 temp에 넣는다.
+                    if ( temp > sliced[i]){
+                        temp = sliced[i]
                     }
                 }
+
             }
-            answer.plus(aa)
+            println( "aa : " + aa)
+            answer = answer.plus(aa)
         }
-    }
+    } //main go
+
+
     mainGo()
-    println("answer : ${answer.contentToString()} ")
+    println("answer : ${answer.joinToString()} ")
 }
